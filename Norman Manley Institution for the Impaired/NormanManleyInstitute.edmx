@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClassDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DataforStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateofBirth" Type="date" />
+          <Property Name="Disabilityid" Type="int" />
+          <Property Name="StudentGenderid" Type="int" />
+          <Property Name="Classid" Type="int" />
+          <Property Name="ParentFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentFName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentLName" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DisabilityList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="StaffDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StaffPosition" Type="nvarchar" MaxLength="50" />
+          <Property Name="StaffPassword" Type="nvarchar" MaxLength="250" />
+          <Property Name="FName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StudentGender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_DataforStudent_ClassDetails">
+          <End Role="ClassDetails" Type="Self.ClassDetails" Multiplicity="0..1" />
+          <End Role="DataforStudent" Type="Self.DataforStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassDetails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DataforStudent">
+              <PropertyRef Name="Classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataforStudent_DisabilityList">
+          <End Role="DisabilityList" Type="Self.DisabilityList" Multiplicity="0..1" />
+          <End Role="DataforStudent" Type="Self.DataforStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisabilityList">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DataforStudent">
+              <PropertyRef Name="Disabilityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataforStudent_StudentGender">
+          <End Role="StudentGender" Type="Self.StudentGender" Multiplicity="0..1" />
+          <End Role="DataforStudent" Type="Self.DataforStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentGender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DataforStudent">
+              <PropertyRef Name="StudentGenderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ClassDetails" EntityType="Self.ClassDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataforStudent" EntityType="Self.DataforStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DisabilityList" EntityType="Self.DisabilityList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffDetails" EntityType="Self.StaffDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentGender" EntityType="Self.StudentGender" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DataforStudent_ClassDetails" Association="Self.FK_DataforStudent_ClassDetails">
+            <End Role="ClassDetails" EntitySet="ClassDetails" />
+            <End Role="DataforStudent" EntitySet="DataforStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataforStudent_DisabilityList" Association="Self.FK_DataforStudent_DisabilityList">
+            <End Role="DisabilityList" EntitySet="DisabilityList" />
+            <End Role="DataforStudent" EntitySet="DataforStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataforStudent_StudentGender" Association="Self.FK_DataforStudent_StudentGender">
+            <End Role="StudentGender" EntitySet="StudentGender" />
+            <End Role="DataforStudent" EntitySet="DataforStudent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Norman_Manley_Institution_fo_the_ImpairedEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClassDetails" EntityType="Model.ClassDetail" />
+          <EntitySet Name="DataforStudents" EntityType="Model.DataforStudent" />
+          <EntitySet Name="DisabilityLists" EntityType="Model.DisabilityList" />
+          <EntitySet Name="StaffDetails" EntityType="Model.StaffDetail" />
+          <EntitySet Name="StudentGenders" EntityType="Model.StudentGender" />
+          <AssociationSet Name="FK_DataforStudent_ClassDetails" Association="Model.FK_DataforStudent_ClassDetails">
+            <End Role="ClassDetail" EntitySet="ClassDetails" />
+            <End Role="DataforStudent" EntitySet="DataforStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataforStudent_DisabilityList" Association="Model.FK_DataforStudent_DisabilityList">
+            <End Role="DisabilityList" EntitySet="DisabilityLists" />
+            <End Role="DataforStudent" EntitySet="DataforStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataforStudent_StudentGender" Association="Model.FK_DataforStudent_StudentGender">
+            <End Role="StudentGender" EntitySet="StudentGenders" />
+            <End Role="DataforStudent" EntitySet="DataforStudents" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ClassDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DataforStudents" Relationship="Model.FK_DataforStudent_ClassDetails" FromRole="ClassDetail" ToRole="DataforStudent" />
+        </EntityType>
+        <EntityType Name="DataforStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Disabilityid" Type="Int32" />
+          <Property Name="StudentGenderid" Type="Int32" />
+          <Property Name="Classid" Type="Int32" />
+          <Property Name="ParentFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentFName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentLName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="ClassDetail" Relationship="Model.FK_DataforStudent_ClassDetails" FromRole="DataforStudent" ToRole="ClassDetail" />
+          <NavigationProperty Name="DisabilityList" Relationship="Model.FK_DataforStudent_DisabilityList" FromRole="DataforStudent" ToRole="DisabilityList" />
+          <NavigationProperty Name="StudentGender" Relationship="Model.FK_DataforStudent_StudentGender" FromRole="DataforStudent" ToRole="StudentGender" />
+        </EntityType>
+        <EntityType Name="DisabilityList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DataforStudents" Relationship="Model.FK_DataforStudent_DisabilityList" FromRole="DisabilityList" ToRole="DataforStudent" />
+        </EntityType>
+        <EntityType Name="StaffDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StaffPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StaffPassword" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StudentGender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DataforStudents" Relationship="Model.FK_DataforStudent_StudentGender" FromRole="StudentGender" ToRole="DataforStudent" />
+        </EntityType>
+        <Association Name="FK_DataforStudent_ClassDetails">
+          <End Type="Model.ClassDetail" Role="ClassDetail" Multiplicity="0..1" />
+          <End Type="Model.DataforStudent" Role="DataforStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassDetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DataforStudent">
+              <PropertyRef Name="Classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataforStudent_DisabilityList">
+          <End Type="Model.DisabilityList" Role="DisabilityList" Multiplicity="0..1" />
+          <End Type="Model.DataforStudent" Role="DataforStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisabilityList">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DataforStudent">
+              <PropertyRef Name="Disabilityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataforStudent_StudentGender">
+          <End Type="Model.StudentGender" Role="StudentGender" Multiplicity="0..1" />
+          <End Type="Model.DataforStudent" Role="DataforStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentGender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DataforStudent">
+              <PropertyRef Name="StudentGenderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Norman_Manley_Institution_fo_the_ImpairedEntities1">
+          <EntitySetMapping Name="ClassDetails">
+            <EntityTypeMapping TypeName="Model.ClassDetail">
+              <MappingFragment StoreEntitySet="ClassDetails">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataforStudents">
+            <EntityTypeMapping TypeName="Model.DataforStudent">
+              <MappingFragment StoreEntitySet="DataforStudent">
+                <ScalarProperty Name="StudentLName" ColumnName="StudentLName" />
+                <ScalarProperty Name="StudentFName" ColumnName="StudentFName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="ParentLastName" ColumnName="ParentLastName" />
+                <ScalarProperty Name="ParentFirstName" ColumnName="ParentFirstName" />
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+                <ScalarProperty Name="StudentGenderid" ColumnName="StudentGenderid" />
+                <ScalarProperty Name="Disabilityid" ColumnName="Disabilityid" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DisabilityLists">
+            <EntityTypeMapping TypeName="Model.DisabilityList">
+              <MappingFragment StoreEntitySet="DisabilityList">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffDetails">
+            <EntityTypeMapping TypeName="Model.StaffDetail">
+              <MappingFragment StoreEntitySet="StaffDetails">
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="StaffPassword" ColumnName="StaffPassword" />
+                <ScalarProperty Name="StaffPosition" ColumnName="StaffPosition" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentGenders">
+            <EntityTypeMapping TypeName="Model.StudentGender">
+              <MappingFragment StoreEntitySet="StudentGender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
