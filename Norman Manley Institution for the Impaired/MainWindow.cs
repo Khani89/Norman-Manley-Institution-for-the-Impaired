@@ -12,16 +12,35 @@ namespace Norman_Manley_Institution_for_the_Impaired
 {
     public partial class MainWindow : Form
     {
+        private Ulogin Login;
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        private void addStudentToolStripMenuItem_Click(object sender, EventArgs e)
+        public MainWindow(Ulogin login)
         {
-            var studentinformation = new StudentInformation();
-            studentinformation.MdiParent = this;
-            studentinformation.Show();
+            InitializeComponent();
+            Login = login;
+        }
+
+
+        private void manageStudentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var OpenForms = Application.OpenForms.Cast<Form>();
+            var isOpen = OpenForms.Any(k => k.Name == "ManageStudentData");
+            if (!isOpen)
+            {
+                var studentinformation = new ManageStudentData();
+                studentinformation.MdiParent = this;
+                studentinformation.Show();
+            }
+
+           
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Login.Close();
         }
     }
 }

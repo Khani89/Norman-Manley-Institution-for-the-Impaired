@@ -19,10 +19,6 @@ namespace Norman_Manley_Institution_for_the_Impaired
             norman_Manley_Institution_Fo_the_ImpairedEntities1 = new Norman_Manley_Institution_fo_the_ImpairedEntities1();
         }
 
-        private void tbStudentsName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void bSave_Click(object sender, EventArgs e)
         {
@@ -69,6 +65,8 @@ namespace Norman_Manley_Institution_for_the_Impaired
                     norman_Manley_Institution_Fo_the_ImpairedEntities1.DataforStudents.Add(StudentData);
                     norman_Manley_Institution_Fo_the_ImpairedEntities1.SaveChanges();
 
+                    managestudentdata.populate();
+
                     MessageBox.Show($"Students First Name: {studentsfname}\n\r" +
                                     $"Students Last Name: {studentslname}\n\r"+
                                     $"Childs Nationality: {Nationality}\n\r" +
@@ -83,7 +81,8 @@ namespace Norman_Manley_Institution_for_the_Impaired
                                     $"Parents Email Address: {EmailAddress}\n\r"+
                                     $"Childs Status: {status}\n\r"+
                                     $"FILE WAS SAVED SUCCESSFULLY");
-                                    
+                    
+                    Close();
                 }
             }
             catch (Exception ex)

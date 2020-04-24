@@ -16,7 +16,7 @@ namespace Norman_Manley_Institution_for_the_Impaired
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            Application.Run(new Ulogin());
         }
     }
 }

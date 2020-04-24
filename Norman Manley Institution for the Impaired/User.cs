@@ -12,13 +12,10 @@ namespace Norman_Manley_Institution_for_the_Impaired
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffDetail
+    public partial class User
     {
         public int id { get; set; }
         public string UserName { get; set; }
-        public string StaffPosition { get; set; }
-        public string StaffPassword { get; set; }
-        public string FName { get; set; }
-        public string LName { get; set; }
+        public string Password { get; set; }
     }
 }

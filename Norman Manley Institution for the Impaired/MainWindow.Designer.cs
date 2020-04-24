@@ -31,8 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.manageStudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addStudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editStudentRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,25 +54,10 @@
             // 
             // manageStudentToolStripMenuItem
             // 
-            this.manageStudentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addStudentToolStripMenuItem,
-            this.editStudentRecordToolStripMenuItem});
             this.manageStudentToolStripMenuItem.Name = "manageStudentToolStripMenuItem";
             this.manageStudentToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
             this.manageStudentToolStripMenuItem.Text = "Manage Student";
-            // 
-            // addStudentToolStripMenuItem
-            // 
-            this.addStudentToolStripMenuItem.Name = "addStudentToolStripMenuItem";
-            this.addStudentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addStudentToolStripMenuItem.Text = "Add Student";
-            this.addStudentToolStripMenuItem.Click += new System.EventHandler(this.addStudentToolStripMenuItem_Click);
-            // 
-            // editStudentRecordToolStripMenuItem
-            // 
-            this.editStudentRecordToolStripMenuItem.Name = "editStudentRecordToolStripMenuItem";
-            this.editStudentRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editStudentRecordToolStripMenuItem.Text = "Edit Student Record";
+            this.manageStudentToolStripMenuItem.Click += new System.EventHandler(this.manageStudentToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -87,6 +70,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "Norman Manley Institute for the Impaired";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -99,7 +83,5 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem manageStudentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addStudentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editStudentRecordToolStripMenuItem;
     }
 }

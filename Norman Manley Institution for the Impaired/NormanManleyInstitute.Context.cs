@@ -26,9 +26,9 @@ namespace Norman_Manley_Institution_for_the_Impaired
         }
     
         public virtual DbSet<ClassDetail> ClassDetails { get; set; }
-        public virtual DbSet<DataforStudent> DataforStudents { get; set; }
         public virtual DbSet<DisabilityList> DisabilityLists { get; set; }
-        public virtual DbSet<StaffDetail> StaffDetails { get; set; }
         public virtual DbSet<StudentGender> StudentGenders { get; set; }
+        public virtual DbSet<DataforStudent> DataforStudents { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

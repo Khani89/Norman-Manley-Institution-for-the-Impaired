@@ -10,13 +10,13 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DataforStudent">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
           <Property Name="DateofBirth" Type="date" />
           <Property Name="Disabilityid" Type="int" />
@@ -26,7 +26,7 @@
           <Property Name="ParentLastName" Type="nvarchar" MaxLength="50" />
           <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
-          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="200" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="StudentFName" Type="nvarchar" MaxLength="50" />
           <Property Name="StudentLName" Type="nchar" MaxLength="50" />
@@ -38,23 +38,20 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
         </EntityType>
-        <EntityType Name="StaffDetails">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
-          <Property Name="StaffPosition" Type="nvarchar" MaxLength="50" />
-          <Property Name="StaffPassword" Type="nvarchar" MaxLength="250" />
-          <Property Name="FName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LName" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="StudentGender">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_DataforStudent_ClassDetails">
           <End Role="ClassDetails" Type="Self.ClassDetails" Multiplicity="0..1" />
@@ -96,8 +93,8 @@
           <EntitySet Name="ClassDetails" EntityType="Self.ClassDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataforStudent" EntityType="Self.DataforStudent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisabilityList" EntityType="Self.DisabilityList" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StaffDetails" EntityType="Self.StaffDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentGender" EntityType="Self.StudentGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_DataforStudent_ClassDetails" Association="Self.FK_DataforStudent_ClassDetails">
             <End Role="ClassDetails" EntitySet="ClassDetails" />
             <End Role="DataforStudent" EntitySet="DataforStudent" />
@@ -117,10 +114,9 @@
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Norman_Manley_Institution_fo_the_ImpairedEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ClassDetails" EntityType="Model.ClassDetail" />
-          <EntitySet Name="DataforStudents" EntityType="Model.DataforStudent" />
           <EntitySet Name="DisabilityLists" EntityType="Model.DisabilityList" />
-          <EntitySet Name="StaffDetails" EntityType="Model.StaffDetail" />
           <EntitySet Name="StudentGenders" EntityType="Model.StudentGender" />
+          <EntitySet Name="DataforStudents" EntityType="Model.DataforStudent" />
           <AssociationSet Name="FK_DataforStudent_ClassDetails" Association="Model.FK_DataforStudent_ClassDetails">
             <End Role="ClassDetail" EntitySet="ClassDetails" />
             <End Role="DataforStudent" EntitySet="DataforStudents" />
@@ -133,36 +129,15 @@
             <End Role="StudentGender" EntitySet="StudentGenders" />
             <End Role="DataforStudent" EntitySet="DataforStudents" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Users" EntityType="Model.User" />
+          </EntityContainer>
         <EntityType Name="ClassDetail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DataforStudents" Relationship="Model.FK_DataforStudent_ClassDetails" FromRole="ClassDetail" ToRole="DataforStudent" />
-        </EntityType>
-        <EntityType Name="DataforStudent">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
-          <Property Name="Disabilityid" Type="Int32" />
-          <Property Name="StudentGenderid" Type="Int32" />
-          <Property Name="Classid" Type="Int32" />
-          <Property Name="ParentFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ParentLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StudentFName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StudentLName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="ClassDetail" Relationship="Model.FK_DataforStudent_ClassDetails" FromRole="DataforStudent" ToRole="ClassDetail" />
-          <NavigationProperty Name="DisabilityList" Relationship="Model.FK_DataforStudent_DisabilityList" FromRole="DataforStudent" ToRole="DisabilityList" />
-          <NavigationProperty Name="StudentGender" Relationship="Model.FK_DataforStudent_StudentGender" FromRole="DataforStudent" ToRole="StudentGender" />
         </EntityType>
         <EntityType Name="DisabilityList">
           <Key>
@@ -172,24 +147,35 @@
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DataforStudents" Relationship="Model.FK_DataforStudent_DisabilityList" FromRole="DisabilityList" ToRole="DataforStudent" />
         </EntityType>
-        <EntityType Name="StaffDetail">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="StaffPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StaffPassword" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="StudentGender">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DataforStudents" Relationship="Model.FK_DataforStudent_StudentGender" FromRole="StudentGender" ToRole="DataforStudent" />
+        </EntityType>
+        <EntityType Name="DataforStudent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Disabilityid" Type="Int32" />
+          <Property Name="StudentGenderid" Type="Int32" />
+          <Property Name="Classid" Type="Int32" />
+          <Property Name="ParentFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentFName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentLName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="ClassDetail" Relationship="Model.FK_DataforStudent_ClassDetails" FromRole="DataforStudent" ToRole="ClassDetail" />
+          <NavigationProperty Name="DisabilityList" Relationship="Model.FK_DataforStudent_DisabilityList" FromRole="DataforStudent" ToRole="DisabilityList" />
+          <NavigationProperty Name="StudentGender" Relationship="Model.FK_DataforStudent_StudentGender" FromRole="DataforStudent" ToRole="StudentGender" />
         </EntityType>
         <Association Name="FK_DataforStudent_ClassDetails">
           <End Type="Model.ClassDetail" Role="ClassDetail" Multiplicity="0..1" />
@@ -227,7 +213,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -236,6 +230,22 @@
           <EntitySetMapping Name="ClassDetails">
             <EntityTypeMapping TypeName="Model.ClassDetail">
               <MappingFragment StoreEntitySet="ClassDetails">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DisabilityLists">
+            <EntityTypeMapping TypeName="Model.DisabilityList">
+              <MappingFragment StoreEntitySet="DisabilityList">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentGenders">
+            <EntityTypeMapping TypeName="Model.StudentGender">
+              <MappingFragment StoreEntitySet="StudentGender">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -261,30 +271,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DisabilityLists">
-            <EntityTypeMapping TypeName="Model.DisabilityList">
-              <MappingFragment StoreEntitySet="DisabilityList">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StaffDetails">
-            <EntityTypeMapping TypeName="Model.StaffDetail">
-              <MappingFragment StoreEntitySet="StaffDetails">
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="StaffPassword" ColumnName="StaffPassword" />
-                <ScalarProperty Name="StaffPosition" ColumnName="StaffPosition" />
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StudentGenders">
-            <EntityTypeMapping TypeName="Model.StudentGender">
-              <MappingFragment StoreEntitySet="StudentGender">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
