@@ -13,14 +13,16 @@ namespace Norman_Manley_Institution_for_the_Impaired
     public partial class MainWindow : Form
     {
         private Ulogin Login;
+        public String RoleName;
         public MainWindow()
         {
             InitializeComponent();
         }
-        public MainWindow(Ulogin login)
+        public MainWindow(Ulogin login, String roleShortname)
         {
             InitializeComponent();
             Login = login;
+            RoleName = roleShortname;
         }
 
 
@@ -41,6 +43,19 @@ namespace Norman_Manley_Institution_for_the_Impaired
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             Login.Close();
+        }
+
+        private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            if(RoleName != "admin")
+            {
+                manageUsersToolStripMenuItem.Visible = false;
+            }
         }
     }
 }

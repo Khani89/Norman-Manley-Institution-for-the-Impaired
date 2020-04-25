@@ -47,7 +47,9 @@ namespace Norman_Manley_Institution_for_the_Impaired
                 }
                 else
                 {
-                    var mainWindow = new MainWindow(this);
+                    var role = user.UserRoles.FirstOrDefault();
+                    var roleShortname = role.Role.Shortname;
+                    var mainWindow = new MainWindow(this, roleShortname);
                     mainWindow.Show();
                     Hide(); 
                 }
@@ -55,7 +57,7 @@ namespace Norman_Manley_Institution_for_the_Impaired
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error Detected Please try again"); 
+                MessageBox.Show("Something went Wrong, Please try again"); 
             }
             
 

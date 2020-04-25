@@ -95,6 +95,15 @@
     <Compile Include="EditStudentData.Designer.cs">
       <DependentUpon>EditStudentData.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageUsers.Designer.cs">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>NormanManleyInstitute.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>NormanManleyInstitute.tt</DependentUpon>
     </Compile>
@@ -142,6 +151,9 @@
     <Compile Include="StudentGender.cs">
       <DependentUpon>NormanManleyInstitute.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserRole.cs">
+      <DependentUpon>NormanManleyInstitute.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EditStudentData.resx">
       <DependentUpon>EditStudentData.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageStudentData.resx">
       <DependentUpon>ManageStudentData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageUsers.resx">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentInformation.resx">
       <DependentUpon>StudentInformation.cs</DependentUpon>

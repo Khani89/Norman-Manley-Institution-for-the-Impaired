@@ -65,7 +65,7 @@ namespace Norman_Manley_Institution_for_the_Impaired
                     norman_Manley_Institution_Fo_the_ImpairedEntities1.DataforStudents.Add(StudentData);
                     norman_Manley_Institution_Fo_the_ImpairedEntities1.SaveChanges();
 
-                    managestudentdata.populate();
+                   
 
                     MessageBox.Show($"Students First Name: {studentsfname}\n\r" +
                                     $"Students Last Name: {studentslname}\n\r"+
