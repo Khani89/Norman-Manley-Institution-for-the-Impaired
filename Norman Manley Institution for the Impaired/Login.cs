@@ -29,27 +29,19 @@ namespace Norman_Manley_Institution_for_the_Impaired
                 var Username = tbUserName.Text.Trim();
                 var password = tbPassword.Text;
 
-                byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var hashed_password = Utils.HashPassword(password);
 
-                StringBuilder sBuilder = new StringBuilder();
+                var user = ManageData.Users.FirstOrDefault(k => k.UserName == Username && k.Password == hashed_password
+                           && k.isActive == true);
 
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
-
-                var hashed_password = sBuilder.ToString();
-
-                var user = ManageData.Users.FirstOrDefault(k => k.UserName == Username && k.Password == hashed_password);
                 if (user == null)
                 {
                     MessageBox.Show("Please provide correct credentials");
                 }
                 else
                 {
-                    var role = user.UserRoles.FirstOrDefault();
-                    var roleShortname = role.Role.Shortname;
-                    var mainWindow = new MainWindow(this, roleShortname);
+                   
+                    var mainWindow = new MainWindow(this, user);
                     mainWindow.Show();
                     Hide(); 
                 }

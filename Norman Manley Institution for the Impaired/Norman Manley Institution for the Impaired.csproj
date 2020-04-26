@@ -80,6 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUser.Designer.cs">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClassDetail.cs">
       <DependentUpon>NormanManleyInstitute.tt</DependentUpon>
     </Compile>
@@ -100,6 +106,12 @@
     </Compile>
     <Compile Include="ManageUsers.Designer.cs">
       <DependentUpon>ManageUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.Designer.cs">
+      <DependentUpon>ResetPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>NormanManleyInstitute.tt</DependentUpon>
@@ -154,6 +166,10 @@
     <Compile Include="UserRole.cs">
       <DependentUpon>NormanManleyInstitute.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="AddUser.resx">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditStudentData.resx">
       <DependentUpon>EditStudentData.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageUsers.resx">
       <DependentUpon>ManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResetPassword.resx">
+      <DependentUpon>ResetPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentInformation.resx">
       <DependentUpon>StudentInformation.cs</DependentUpon>
@@ -180,6 +199,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="NormanManleyInstitute.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -216,6 +236,13 @@
       <DependentUpon>NormanManleyInstitute.edmx</DependentUpon>
       <LastGenOutput>NormanManleyInstitute.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\big_IMG_6017.JPG" />
+    <None Include="Resources\Stourfield-Infant-School-Internal-8.jpg" />
+    <None Include="Resources\whitley-park-nursery-school-infants-classroom-D5REPC1.jpg" />
+    <None Include="Resources\images.jpeg" />
+    <None Include="Resources\dsc06861.jpg" />
+    <None Include="Resources\IMG-20200408-WA0002.jpg" />
+    <None Include="Resources\whitley-park-nursery-school-infants-classroom-D5REPC.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
